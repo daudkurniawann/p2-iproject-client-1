@@ -1,4 +1,6 @@
-<script></script>
+<script>
+export default {};
+</script>
 
 <template>
   <main>
