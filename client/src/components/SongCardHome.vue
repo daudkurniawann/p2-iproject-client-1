@@ -7,7 +7,7 @@
         @click="clickSong"
         class="absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex"
       ></div>
-      <img :src="homeSong.track.album.images[0].url" alt="" />
+      <img :src="homeSong.track.album.images[0].url" alt="" class="h-40 w-40" />
     </div>
     <div class="mt-4" flex flex-col>
       <p class="text-black font-semibold">{{ homeSong.track.name }}</p>
@@ -19,12 +19,18 @@
 </template>
 
 <script>
+import { mapActions } from "pinia";
+import { useLoginStore } from "../stores/loginStore";
+
 export default {
   name: "songCard",
   props: ["homeSong"],
   methods: {
+    ...mapActions(useLoginStore, ["fetchSpotifySong"]),
+
     clickSong() {
-      console.log(this.homeSong.track.id);
+      const id = this.homeSong.track.id;
+      this.fetchSpotifySong(id);
     },
   },
 };

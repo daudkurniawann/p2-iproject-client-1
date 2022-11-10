@@ -1,10 +1,17 @@
 <template>
   <div>
     <h1>player</h1>
-    <img src="" alt="" />
+    <img :src="songImage" alt="" />
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "pinia";
+import { useLoginStore } from "../stores/loginStore";
+
+export default {
+  computed: {
+    ...mapState(useLoginStore, ["songImage"]),
+  },
+};
 </script>

@@ -3,10 +3,14 @@ import { useLoginStore } from "../stores/loginStore";
 import { mapActions, mapState } from "pinia";
 import SongCardHome from "../components/SongCardHome.vue";
 import Player from "../components/Player.vue";
+import Sidebar from "../components/Sidebar.vue";
+import Center from "../components/Center.vue";
 export default {
   components: {
     SongCardHome,
     Player,
+    Sidebar,
+    Center
   },
   methods: {
     ...mapActions(useLoginStore, [
@@ -14,6 +18,7 @@ export default {
       "checkSession",
       "fetchAlbum",
       "fetchHomeSong",
+      "refreshSession",
     ]),
 
     clickLogOut() {
@@ -38,7 +43,14 @@ export default {
 </script>
 
 <template>
-  <!-- card -->
+  <div class="bg-black h-screen overflow-hidden">
+    <main class="flex">
+      <Sidebar />
+      <Center />
+    </main>
+  </div>
+  
+  <!-- main page -->
   <div class="flex flex-col">
     <div
       class="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10"
@@ -55,8 +67,6 @@ export default {
       />
     </div>
   </div>
-  <br />
-  <br />
   <button
     @click="signOut"
     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -65,6 +75,6 @@ export default {
   </button>
 
   <div class="sticky bottom-0">
-    <Player />
+    <!-- <Player /> -->
   </div>
 </template>
